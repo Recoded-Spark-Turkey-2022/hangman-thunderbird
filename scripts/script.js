@@ -1,18 +1,18 @@
 
-//Fetching(0)----------------------------------------------------------------------
+//Declaring----------------------------------------------------------------------
 
 var letters = []
 var matchCount = 0;
 var liveCount = 5;
 var winCount = 0;
-
+//Fetching----------------------------------------------------------------------
 function randomWord() {
   return fetch('https://random-word-api.herokuapp.com/word?number=1')
   .then((response) => response.json())
   .then((data) => blanks(data));
 }
 
-
+//CreatingBlanks----------------------------------------------------------------------
 function blanks(data){
   const [word] = data
   //console.log(word)
@@ -28,6 +28,7 @@ function blanks(data){
     blankDiv.appendChild(blank); 
   })
 }
+//ConditionsForCounter----------------------------------------------------------------------
 let counterP = document.createElement('p')
 document.querySelector('#counter').appendChild(counterP)
   document.addEventListener('click',(e) => {    
@@ -43,13 +44,7 @@ document.querySelector('#counter').appendChild(counterP)
         counterP.innerText = 'Game Over!';
         counterP.style.color = "red";
       }
-      for (let i = 0; i < letters.length; i++) {
-
-        if (winCount === letters.length) {
-        counterP.innerText = "You Win!";
-        
-        }
-      }
+      
       console.log(matchCount)
       //console.log(liveCount)
       liveCount--
@@ -66,13 +61,13 @@ document.querySelector('#counter').appendChild(counterP)
   }
     clearMatches()
 })
-let rest = document.getElementById('reset')   // calling the play again button
-  rest.addEventListener('click',e=>{          // setting event listener to the button
-    e.preventDefault()
-    window.location.reload();               // reloding the page when the button clicked so the user can start again
+//PlayAgainButton----------------------------------------------------------------------
+  let resetB = document.getElementById('reset')   
+   resetB.addEventListener('click',(e) => {        
+   window.location.reload();             
   });
 
-
+//If we have match!----------------------------------------------------------------------
 function searchLetterFromWord(inputLetter){
   for (let i=0; i<letters.length; i++){
       const letter = letters[i]
@@ -83,7 +78,7 @@ function searchLetterFromWord(inputLetter){
       elements.forEach((letterElement)=>{ 
         letterElement.innerHTML = letter
       })
-winCount++
+     winCount++
       matchCount++
     }  
   }
