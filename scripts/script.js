@@ -35,6 +35,7 @@ function blanks(data){
 //ConditionsForCounter----------------------------------------------------------------------
 let counterP = document.createElement('p')
 document.querySelector('#counter').appendChild(counterP)
+
 const buttons = document.querySelectorAll(".letters-button")
 
 buttons.forEach(button => {
@@ -51,7 +52,7 @@ buttons.forEach(button => {
       console.log(mistakes);
       mistakes++
       counterP.innerText = `You have ${liveCount} lives!`;
-      updateHangmanPicture()
+      updateHangmanPicture() 
 
        if(liveCount  === 0){
         counterP.innerText = 'Game Over!';
@@ -97,13 +98,13 @@ function searchLetterFromWord(inputLetter){
       elements.forEach((letterElement)=>{ 
         letterElement.innerHTML = letter
       })
-     winCount++
+      winCount++
       matchCount++
     }  
   }
 }
 function clearMatches(){
   matchCount = 0;
-}
+} 
 
 randomWord();
