@@ -1,4 +1,3 @@
-
 //Declaring----------------------------------------------------------------------
 
 var letters = []
@@ -57,11 +56,12 @@ buttons.forEach(button => {
        if(liveCount  === 0){
         counterP.innerText = 'Game Over!';
         counterP.style.color = "red";
+        buttons.forEach((btn)=>{
+          btn.disabled=true;
+          btn.style.backgroundColor = "rgba(255, 99, 71, 0)";
+        })
       }
 
-      else if(liveCount  < 0){
-        return ;
-      }
       console.log(matchCount)
       //console.log(liveCount)
       liveCount--
