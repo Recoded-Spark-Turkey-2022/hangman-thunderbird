@@ -1,9 +1,8 @@
-
 //Declaring----------------------------------------------------------------------
 
 var letters = []
 var matchCount = 0;
-var liveCount = 6;
+var liveCount = 5;
 var winCount = 0;
 var mistakes = 0;
 //Fetching----------------------------------------------------------------------
@@ -35,26 +34,34 @@ function blanks(data){
 //ConditionsForCounter----------------------------------------------------------------------
 let counterP = document.createElement('p')
 document.querySelector('#counter').appendChild(counterP)
-  document.addEventListener('click',(e) => {    
-  e.preventDefault();  
-  if(e.target.className === 'letters-button') { 
-     
-    searchLetterFromWord(e.target.value)
+
+const buttons = document.querySelectorAll(".letters-button")
+
+buttons.forEach(button => {
+  button.addEventListener("click", (e) =>{
+    function updateHangmanPicture() {
+      document.getElementById('hangmanPic').src = './images/hangman/' + mistakes + '.jpg';
+    }
+  
+     button.setAttribute("disabled", "")
+    searchLetterFromWord(button.innerText)
     
     if(matchCount === 0){
       //liveCount--
+      console.log(mistakes);
       mistakes++
       counterP.innerText = `You have ${liveCount} lives!`;
-      updateHangmanPicture()
+      updateHangmanPicture() 
 
        if(liveCount  === 0){
         counterP.innerText = 'Game Over!';
         counterP.style.color = "red";
+        buttons.forEach((btn)=>{
+          btn.disabled=true;
+          btn.style.backgroundColor = "rgba(255, 99, 71, 0)";
+        })
       }
 
-      else if(liveCount  < 0){
-        return ;
-      }
       console.log(matchCount)
       //console.log(liveCount)
       liveCount--
@@ -68,13 +75,11 @@ document.querySelector('#counter').appendChild(counterP)
       counterP.style.color = "green";
       }
     }
-    
-  }
-  function updateHangmanPicture() {
-    document.getElementById('hangmanPic').src = './images/hangman/' + mistakes + '.jpg';
-  }
     clearMatches()
-})
+  })
+  
+});
+
 //PlayAgainButton----------------------------------------------------------------------
   let resetB = document.getElementById('reset')   
    resetB.addEventListener('click',(e) => {        
@@ -83,6 +88,7 @@ document.querySelector('#counter').appendChild(counterP)
 
 //If we have match!----------------------------------------------------------------------
 function searchLetterFromWord(inputLetter){
+  console.log(inputLetter)
   for (let i=0; i<letters.length; i++){
       const letter = letters[i]
       if(letter === inputLetter)
@@ -92,21 +98,13 @@ function searchLetterFromWord(inputLetter){
       elements.forEach((letterElement)=>{ 
         letterElement.innerHTML = letter
       })
-     winCount++
+      winCount++
       matchCount++
     }  
   }
 }
-
 function clearMatches(){
   matchCount = 0;
-}
-
+} 
 
 randomWord();
-
-
- 
- 
-
-
