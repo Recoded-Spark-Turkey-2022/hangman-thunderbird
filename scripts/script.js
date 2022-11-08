@@ -3,8 +3,9 @@
 
 var letters = []
 var matchCount = 0;
-var liveCount = 5;
+var liveCount = 6;
 var winCount = 0;
+var mistakes = 0;
 //Fetching----------------------------------------------------------------------
 function randomWord() {
   return fetch('https://random-word-api.herokuapp.com/word?number=1')
@@ -27,24 +28,33 @@ function blanks(data){
     let blankDiv = document.getElementById('blanks')
     blankDiv.appendChild(blank); 
   })
+
 }
+
+
 //ConditionsForCounter----------------------------------------------------------------------
 let counterP = document.createElement('p')
 document.querySelector('#counter').appendChild(counterP)
   document.addEventListener('click',(e) => {    
   e.preventDefault();  
-  if(e.target.className === 'letters-button') {  
+  if(e.target.className === 'letters-button') { 
+     
     searchLetterFromWord(e.target.value)
     
     if(matchCount === 0){
-      
+      //liveCount--
+      mistakes++
       counterP.innerText = `You have ${liveCount} lives!`;
+      updateHangmanPicture()
 
        if(liveCount  === 0){
         counterP.innerText = 'Game Over!';
         counterP.style.color = "red";
       }
-      
+
+      else if(liveCount  < 0){
+        return ;
+      }
       console.log(matchCount)
       //console.log(liveCount)
       liveCount--
@@ -55,9 +65,13 @@ document.querySelector('#counter').appendChild(counterP)
       if (winCount === letters.length) {
 
       counterP.innerHTML = "You Win!";
+      counterP.style.color = "green";
       }
     }
     
+  }
+  function updateHangmanPicture() {
+    document.getElementById('hangmanPic').src = './images/hangman/' + mistakes + '.jpg';
   }
     clearMatches()
 })
@@ -87,6 +101,7 @@ function searchLetterFromWord(inputLetter){
 function clearMatches(){
   matchCount = 0;
 }
+
 
 randomWord();
 
