@@ -3,10 +3,65 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Thunderbird Hangman</title>
   <link rel="stylesheet" href="./styles/style.css">
 </head>
 <body>
+  <div class="container">
+
+  
+  <div class="Text">
+<h1>HANGMAN</h1>
+<p>Click on Buttons and Guess the Word!</p>
+  </div>
+  <div id="buttons">
+    <div class="letters" id="letters">
+      <button class="letters-button" value="a" id="a" >a</button>
+      <button class="letters-button" value="b" id="b" >b</button>
+      <button class="letters-button" value="c" id="c" >c</button>
+      <button class="letters-button" value="d" id="d">d</button>
+      <button class="letters-button" value="e" id="e">e</button>
+      <button class="letters-button" value="f" id="f">f</button>
+      <button class="letters-button" value="g" id="g">g</button>
+      <button class="letters-button" value="h" id="h">h</button>
+      <button class="letters-button" value="i" id="i">i</button>
+      <button class="letters-button" value="j" id="j">j</button>
+      <button class="letters-button" value="k" id="k">k</button>
+      <button class="letters-button" value="l" id="l">l</button>
+      <button class="letters-button" value="m" id="m">m</button>
+      <button class="letters-button" value="n" id="n">n</button>
+      <button class="letters-button" value="o" id="o">o</button>
+      <button class="letters-button" value="p" id="p">p</button>
+      <button class="letters-button" value="q" id="q">q</button>
+      <button class="letters-button" value="r" id="r">r</button>
+      <button class="letters-button" value="s" id="s">s</button>
+      <button class="letters-button" value="t" id="t">t</button>
+      <button class="letters-button" value="u" id="u">u</button>
+      <button class="letters-button" value="v" id="v">v</button>
+      <button class="letters-button" value="w" id="w">w</button>
+      <button class="letters-button" value="x" id="x">x</button>
+      <button class="letters-button" value="y" id="y">y</button>
+      <button class="letters-button" value="z" id="z">z</button>
+     </div>
+  </div>
+
+  <div class="blanks" id="blanks">
+     
+  </div>
+  
+  <div id="counter">
+    
+
+  </div>
+  <div id="hangman-drawing">
+    <img id='hangmanPic' src="./images/hangman/0.jpg" alt="">
+
+  </div>
+  <div class="reset">
+    <button id="reset">Play Again</button>
+   
+  </div>
+</div>
   
 
   <script src="./scripts/script.js"></script>
